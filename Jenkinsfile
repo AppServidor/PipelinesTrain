@@ -11,15 +11,14 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    echo "building version ${NEW_VERSION}"
-                '''
+
             }
         }
 
         stage ('Build') {
   
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                 sh 'mvn clean install -B'
               
             }
             post {
