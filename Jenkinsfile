@@ -1,37 +1,37 @@
-pipeline {
-  agent {
-    kubernetes {
-      yaml """
+podTemplate(yaml: """
 apiVersion: v1
 kind: Pod
-metadata:
-  labels:
-    some-label: some-label-value
 spec:
   containers:
   - name: maven
-    image: maven:alpine
-    command:
-    - cat
+    image: maven:3.3.9-jdk-8-alpine
+    command: ['cat']
     tty: true
-  - name: busybox
-    image: busybox
-    command:
-    - cat
+  - name: golang
+    image: golang:1.8.0
+    command: ['cat']
     tty: true
 """
-    }
-  }
-  stages {
-    stage('Run maven') {
-      steps {
-        container('maven') {
-          sh 'mvn -version'
-        }
-        container('busybox') {
-          sh '/bin/busybox'
-        }
+  ) {
+
+  node(POD_LABEL) {
+    stage('Build a Maven project') {
+      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+      container('maven') {
+        sh 'mvn -B clean package'
       }
     }
+
+    stage('Build a Golang project') {
+      git url: 'https://github.com/terraform-providers/terraform-provider-aws.git'
+      container('golang') {
+        sh """
+        mkdir -p /go/src/github.com/terraform-providers
+        ln -s `pwd` /go/src/github.com/terraform-providers/terraform-provider-aws
+        cd /go/src/github.com/terraform-providers/terraform-provider-aws && make build
+        """
+      }
+    }
+
   }
 }
