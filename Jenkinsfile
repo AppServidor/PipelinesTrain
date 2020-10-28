@@ -1,23 +1,21 @@
 podTemplate(yaml: """
 apiVersion: v1
 kind: Pod
+metadata:
+  labels:
+    some-label: some-label-value
 spec:
   containers:
-  - name: maven
-    image: maven:3.3.9-jdk-8-alpine
-    command: ['cat']
+  - name: busybox
+    image: busybox
+    command:
+    - cat
     tty: true
-
 """
-  ) {
-
-  node(POD_LABEL) {
-    stage('Build a Maven project') {
-      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-      container('maven') {
-        sh 'mvn -B clean package'
+) {
+    node(POD_LABEL) {
+      container('busybox') {
+        sh "hostname"
       }
     }
-  
-      }
-    }
+}
