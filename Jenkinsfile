@@ -8,6 +8,7 @@ metadata:
   labels:
     some-label: some-label-value
 spec:
+  serviceAccountName: cluster-admin
   containers:
   - name: maven
     image: maven:alpine
