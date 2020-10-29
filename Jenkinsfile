@@ -1,41 +1,21 @@
-pipeline {
-  agent {
-    kubernetes {
-      yaml """
+podTemplate(yaml: """
 apiVersion: v1
 kind: Pod
 metadata:
-  name: petclinic-deployment
   labels:
-    app:  petclinic_server
+    some-label: some-label-value
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: petclinic
-  template:
-    metadata:
-      labels:
-        app: petclinic
-    spec:
-      containers:
-      - name: petclinic
-        image: paulczar/petclinic:spring-k8s-1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
+  containers:
+  - name: busybox
+    image: busybox
+    command:
+    - cat
+    tty: true
 """
-    }
-  }
-  stages {
-    stage('Run') {
-      steps {
-        container('petclinic') {
-          sh 'echo "hola"'
-        }
-     
+) {
+    node(POD_LABEL) {
+      container('busybox') {
+        sh "hostname"
       }
     }
-  }
 }
-
