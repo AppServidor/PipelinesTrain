@@ -5,16 +5,25 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
+  name: petclinic-deployment
   labels:
-    some-label: some-label-value
+    app:  petclinic_server
 spec:
-  containers:
-  - name: petclinic
-    image: paulczar/petclinic:spring-k8s-1
-    command:
-    - cat
-    tty: true
- 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: paulczar/petclinic:spring-k8s-1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
 """
     }
   }
@@ -24,7 +33,9 @@ spec:
         container('petclinic') {
           sh 'echo "hola"'
         }
+     
       }
     }
   }
 }
+
