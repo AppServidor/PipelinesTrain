@@ -2,39 +2,37 @@ pipeline {
   agent {
     kubernetes {
       yaml """
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: petclinic-deployment
   labels:
-    app:  petclinic_server
+    some-label: some-label-value
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: petclinic
-  template:
-    metadata:
-      labels:
-        app: petclinic
-    spec:
-      containers:
-      - name: petclinic
-        image: paulczar/petclinic:spring-k8s-1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
+  containers:
+  - name: maven
+    image: maven:alpine
+    command:
+    - cat
+    tty: true
+  - name: busybox
+    image: busybox
+    command:
+    - cat
+    tty: true
 """
     }
   }
   stages {
-    stage('Run') {
+    stage('Run maven') {
       steps {
-        container('petclinic') {
-          sh 'echo "hola"'
+        container('maven') {
+          sh 'mvn -version'
         }
-     
+        container('busybox') {
+          sh '/bin/busybox'
+        }
       }
     }
   }
 }
+
