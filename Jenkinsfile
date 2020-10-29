@@ -14,11 +14,7 @@ spec:
     command:
     - cat
     tty: true
-  - name: busybox
-    image: busybox
-    command:
-    - cat
-    tty: true
+
 """
     }
   }
@@ -27,9 +23,6 @@ spec:
       steps {
         container('maven') {
           sh 'mvn -version'
-        }
-        container('busybox') {
-          sh '/bin/busybox'
         }
       }
     }
