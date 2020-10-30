@@ -19,6 +19,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: docker
+    image: docker
+    command:
+    - cat
+    tty: true
 
 """
     }
@@ -28,11 +33,17 @@ spec:
          steps {
         container('maven') {
           sh 'mvn -version'
-          sh 'mvn clean install'
+          sh 'mvn clean package'
+
         }
+         container('docker') {
+          sh 'docker --version'
+
+        }
+
       }
         }
-        stage('Example Test') {
+   /*     stage('Example Test') {
            
             steps {
                 echo 'Hello, JDK'
@@ -40,7 +51,7 @@ spec:
                
             }
       
-        }
+        }*/ 
 }
 
 }
