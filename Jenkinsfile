@@ -14,6 +14,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: openjdk
+    image: openjdk
+    command:
+    - cat
+    tty: true
 
 """
     }
@@ -23,8 +28,15 @@ spec:
       steps {
         container('maven') {
           sh 'mvn -version'
+          sh 'mvn clean install'
         }
       }
+     stage('Build') {
+       steps {
+            sh 'make' 
+           archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+           }
+        }
     }
   }
 }
