@@ -23,24 +23,29 @@ spec:
 """
     }
   }
-  stages {
-    stage('Run maven') {
-      steps {
+      stages {
+        stage('Example Build') {
+         steps {
         container('maven') {
           sh 'mvn -version'
           sh 'mvn clean install'
         }
       }
-    
-        stage ('Build') {
-
-            steps {
-              sh 'make' 
-              archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
-            }
-
         }
-        
+        stage('Example Test') {
+           
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -version'
+               
+            }
+      
+        }
+}
+ post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+           
+        }
     }
-  }
 }
