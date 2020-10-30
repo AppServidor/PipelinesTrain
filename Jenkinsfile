@@ -31,12 +31,12 @@ spec:
           sh 'mvn clean install'
         }
       }
-     stage('Build') {
+    
        steps {
             sh 'make' 
            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
            }
-        }
+        
     }
   }
 }
