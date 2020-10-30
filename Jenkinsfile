@@ -38,13 +38,9 @@ spec:
         }
          container('docker') {
           sh 'docker --version'
-          sh """
-              sudo groupadd docker
-              sudo usermod -aG docker clorenzo
-              chmod 777 /var/run/docker.sock
-          """
-          sh 'sudo docker build -t cris/petclinic .'
+          sh 'service docker start'
           sh 'docker build -t cris/petclinic .'
+        //  sh 'docker build -t cris/petclinic .'
           sh 'snap logs docker'
           // sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
         }
