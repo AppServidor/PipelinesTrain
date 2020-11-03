@@ -33,18 +33,21 @@ spec:
          steps {
         container('maven') {
           sh 'mvn -version'
-          sh 'mvn clean package'
+        //  sh 'mvn clean package'
 
         }
           container('docker') {
   
             sh 'docker --version'
-            sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
-  --env DOCKER_CERT_PATH=/certs/client \
-  --env DOCKER_TLS_VERIFY=1'
-            sh 'docker build -t cris/petclinic .'
-            sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
-    
+              // Expose tool versions...
+            sh 'buildah -v'
+             sh 'podman -v'
+          /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
+      --env DOCKER_CERT_PATH=/certs/client \
+      --env DOCKER_TLS_VERIFY=1'
+                sh 'docker build -t cris/petclinic .'
+                sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
+        */   
          
         /*
                   docker {
