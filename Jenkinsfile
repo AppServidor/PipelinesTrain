@@ -47,7 +47,6 @@ spec:
 
         }
         container ('buildah'){
-             sh 'buildah -v'
              sh 'buildah bud . '
         }
           container('podman') {
