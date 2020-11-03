@@ -39,7 +39,7 @@ spec:
           container('docker') {
   
             sh 'docker --version'
-            sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
+            sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://http://a271d1e5f855311ea91dc12342968f8a-369804443.us-east-1.elb.amazonaws.com/:2376 \
   --env DOCKER_CERT_PATH=/certs/client \
   --env DOCKER_TLS_VERIFY=1'
             sh 'docker build -t cris/petclinic .'
