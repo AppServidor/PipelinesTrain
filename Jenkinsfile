@@ -47,6 +47,7 @@ spec:
 
         }
         container ('buildah'){
+            sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
              sh 'buildah bud . '
         }
           container('podman') {
