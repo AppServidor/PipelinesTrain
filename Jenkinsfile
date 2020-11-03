@@ -38,7 +38,7 @@ spec:
         }
           container('podman') {
   
-            sh 'docker --version'
+           // sh 'docker --version'
             
           
              sh 'podman -v'
