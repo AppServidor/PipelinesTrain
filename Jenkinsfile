@@ -36,11 +36,17 @@ spec:
           sh 'mvn clean package'
 
         }
-         container('docker') {
-          sh 'docker --version'
-          sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock docker'
-          sh 'docker build -t cris/petclinic .'
-          sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
+          container('docker') {
+              withEnv([
+      "DOCKER_TLS_VERIFY=1",
+      "DOCKER_HOST=tcp://localhost:2375"
+    ]) {
+            sh 'docker --version'
+            sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock docker'
+            sh 'docker build -t cris/petclinic .'
+            sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
+    }
+         
         /*
                   docker {
             image 'docker:dind'
