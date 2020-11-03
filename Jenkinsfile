@@ -14,8 +14,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: openjdk
-    image: openjdk
+  - name: podman
+    image: marshallford/podman
     command:
     - cat
     tty: true
@@ -39,8 +39,8 @@ spec:
           container('docker') {
   
             sh 'docker --version'
-              // Expose tool versions...
-            sh 'buildah -v'
+            
+          
              sh 'podman -v'
           /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
       --env DOCKER_CERT_PATH=/certs/client \
