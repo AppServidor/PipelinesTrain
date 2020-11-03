@@ -38,11 +38,17 @@ spec:
         }
          container('docker') {
           sh 'docker --version'
-          sh 'service docker start'
+          sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker'
           sh 'docker build -t cris/petclinic .'
-        //  sh 'docker build -t cris/petclinic .'
-          sh 'snap logs docker'
-          // sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
+          sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
+        /*
+                  docker {
+            image 'docker:dind'
+            args '-u root:root -p 3000:3000 --privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+         */
+        
+         
         }
 
       }
