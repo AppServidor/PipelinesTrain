@@ -57,7 +57,7 @@ spec:
   
            // sh 'docker --version'
             
-          
+            sh 'sudo apt install fuse-overlayfs'
              sh 'podman -v'
              sh 'podman images'
         
