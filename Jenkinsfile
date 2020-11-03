@@ -38,7 +38,7 @@ spec:
         }
          container('docker') {
           sh 'docker --version'
-          sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker'
+          sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock docker'
           sh 'docker build -t cris/petclinic .'
           sh 'docker run -p 8080:8080 --user root -v /var/run/docker.sock:/var/run/docker.sock cris/petclinic'
         /*
