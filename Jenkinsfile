@@ -52,14 +52,15 @@ spec:
          //   sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
              sh 'buildah bud -t springclinic .'
              sh 'buildah images'
+             sh 'build run localhost/springclinic'
         }
           container('podman') {
   
            // sh 'docker --version'
             
-            sh 'sudo apt install fuse-overlayfs'
+            sh 'apt install fuse-overlayfs'
              sh 'podman -v'
-             sh 'podman images'
+          
         
           /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
       --env DOCKER_CERT_PATH=/certs/client \
