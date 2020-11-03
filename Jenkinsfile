@@ -44,10 +44,12 @@ spec:
         container('maven') {
           sh 'mvn -version'
           sh 'mvn clean package'
+        stash includes: 'target/*.jar', name: 'targetfiles'
+          sh 'ls'
 
         }
         container ('buildah'){
-            sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
+         //   sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
              sh 'buildah bud . '
         }
           container('podman') {
@@ -56,7 +58,7 @@ spec:
             
           
              sh 'podman -v'
-             sh 'podman build -t cris/petclinic .'
+         //    sh 'podman build -t cris/petclinic .'
           /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
       --env DOCKER_CERT_PATH=/certs/client \
       --env DOCKER_TLS_VERIFY=1'
