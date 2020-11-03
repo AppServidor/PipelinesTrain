@@ -29,6 +29,12 @@ spec:
     command:
     - cat
     tty: true
+  - name: buildah
+    image:  buildah/buildah
+    command:
+    - cat
+    tty: true    
+   
 """
     }
   }
@@ -39,6 +45,10 @@ spec:
           sh 'mvn -version'
           sh 'mvn clean package'
 
+        }
+        container ('buildah'){
+             sh 'buildah -v'
+             sh 'buildah bud . '
         }
           container('podman') {
   
