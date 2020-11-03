@@ -45,12 +45,12 @@ spec:
           sh 'mvn -version'
           sh 'mvn clean package'
         stash includes: 'target/*.jar', name: 'targetfiles'
-          sh 'ls'
+          sh 'ls /home/jenkins/agent/workspace/Prueba_master'
 
         }
         container ('buildah'){
          //   sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
-             sh 'buildah bud . '
+          //   sh 'buildah bud . '
         }
           container('podman') {
   
