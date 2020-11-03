@@ -24,7 +24,11 @@ spec:
     command:
     - cat
     tty: true
-
+  - name: openjdk
+    image: openjdk
+    command:
+    - cat
+    tty: true
 """
     }
   }
