@@ -36,7 +36,7 @@ spec:
         //  sh 'mvn clean package'
 
         }
-          container('docker') {
+          container('podman') {
   
             sh 'docker --version'
             
