@@ -45,7 +45,7 @@ spec:
           sh 'mvn -version'
           sh 'mvn clean package'
         stash includes: 'target/*.jar', name: 'targetfiles'
-          sh 'ls /home/jenkins/agent/workspace/Prueba_master'
+          sh 'ls /home/jenkins/agent/workspace/Prueba_master/target'
 
         }
         container ('buildah'){
