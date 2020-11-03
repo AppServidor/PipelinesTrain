@@ -41,26 +41,19 @@ spec:
       stages {
         stage('Example Build') {
          steps {
-        container('maven') {
-          sh 'mvn -version'
-          sh 'mvn clean package'
-        stash includes: 'target/*.jar', name: 'targetfiles'
-         
+          container('maven') {
+            sh 'mvn -version'
+            sh 'mvn clean package'
+            stash includes: 'target/*.jar', name: 'targetfiles'
 
-        }
-        container ('buildah'){
-         //   sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
-             sh 'buildah bud -t springclinic .'
-             sh 'buildah images'
-           
-        }
+          }
+          container ('buildah'){
+            sh 'buildah bud -t springclinic .'
+            sh 'buildah images'
+          }
           container('podman') {
-  
-           // sh 'docker --version'
-            
-            sh 'apt install fuse-overlayfs'
-             sh 'podman -v'
-          
+            sh 'podman -v'
+            sh 'podman run -p 8080:8080 --user root springclinic'
         
           /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
       --env DOCKER_CERT_PATH=/certs/client \
@@ -73,7 +66,7 @@ spec:
         }
 
       }
-        }
+    }
    /*     stage('Example Test') {
            
             steps {
