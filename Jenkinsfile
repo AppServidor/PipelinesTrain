@@ -52,7 +52,7 @@ spec:
          //   sh 'ls /home/jenkins/agent/workspace/Prueba_master/spring-petclinic'
              sh 'buildah bud -t springclinic .'
              sh 'buildah images'
-             sh 'buildah run localhost/springclinic'
+           
         }
           container('podman') {
   
