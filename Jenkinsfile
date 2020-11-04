@@ -18,13 +18,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: podman
-    image: marshallford/podman
-    command:
-    - cat
-    tty: true
   - name: docker
-    image: docker
+    image: docker:dind
     command:
     - cat
     tty: true
@@ -57,13 +52,14 @@ spec:
           }
       container('docker'){
             sh 'docker login -u ${USER} -p ${PASS}'
+            sh ' docker run --privileged --name some-docker -d \
+                --network some-network --network-alias docker \
+                -e DOCKER_TLS_CERTDIR=/certs \
+                -v some-docker-certs-ca:/certs/ca \
+                -v some-docker-certs-client:/certs/client \
+                docker:dind'
             sh 'docker tag springclinic practicascristina/springclinic:latest'
             sh 'docker push practicascristina/springclinic'   
-                
-               
-      
-            
-           
           }
 
       }
