@@ -56,11 +56,12 @@ spec:
             sh 'buildah images'
           }
       container('docker'){
-            sh """
-                docker login -u ${USER} -p ${PASS}'
-                docker tag springclinic practicascristina/springclinic:latest
-                docker push practicascristina/springclinic
-            """
+            sh 'docker login -u ${USER} -p ${PASS}'
+            sh 'docker tag springclinic practicascristina/springclinic:latest'
+            sh 'docker push practicascristina/springclinic'   
+                
+               
+      
             
            
           }
