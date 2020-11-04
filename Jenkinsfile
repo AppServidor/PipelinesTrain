@@ -54,7 +54,7 @@ spec:
           }
           container('podman') {
             sh 'podman -v'
-            
+            sh 'podman run --privileged -it -v tmp:/var/lib/containers:rw localhost/springclinic'
            // sh 'ls /var/run/containers/storage'
            // sh ' podman run -it --rm -v /var/run/containers/storage:/var/run/containers/storage -v /var/lib/containers/storage:/var/lib/containers/storage --storage-driver=overlay --privileged=true springclinic'
           //  sh 'podman run -p 8080:8080 --user root springclinic'
