@@ -1,7 +1,7 @@
 pipeline {
    environment {
         USER = 'practicascristina'
-        PASS = 'Clsrz94;;'
+        PASS = 'Crlsrz9489'
     }
   agent {
     kubernetes {
@@ -54,7 +54,6 @@ spec:
           container ('buildah'){
             sh 'buildah bud -t springclinic .'
             sh 'buildah images'
-            sh 'buildah containers'
           }
       container('docker'){
             sh """
