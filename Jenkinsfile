@@ -50,10 +50,10 @@ spec:
           container ('buildah'){
             sh 'buildah bud -t springclinic .'
             sh 'buildah images'
-            sh 'ls /var/lib/shared'
           }
           container('podman') {
             sh 'podman -v'
+            sh ' podman run -it --rm -v /var/run/containers/storage:/var/run/containers/storage -v /var/lib/containers/storage:/var/lib/containers/storage --storage-driver=overlay --privileged=true springclinic'
           //  sh 'podman run -p 8080:8080 --user root springclinic'
         
           /*   sh 'docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock docker --env DOCKER_HOST=tcp://docker:2376 \
