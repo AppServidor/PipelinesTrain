@@ -50,10 +50,12 @@ spec:
           container ('buildah'){
             sh 'buildah bud -t springclinic .'
             sh 'buildah images'
+            sh 'buildah containers'
           }
           container('podman') {
             sh 'podman -v'
-            sh 'ls /var/run/containers/storage'
+            
+           // sh 'ls /var/run/containers/storage'
            // sh ' podman run -it --rm -v /var/run/containers/storage:/var/run/containers/storage -v /var/lib/containers/storage:/var/lib/containers/storage --storage-driver=overlay --privileged=true springclinic'
           //  sh 'podman run -p 8080:8080 --user root springclinic'
         
