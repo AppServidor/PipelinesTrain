@@ -52,9 +52,9 @@ spec:
             sh 'buildah bud --format=docker -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-            sh 'buildah tag ${imageName} docker.io/practicascristina/${imageName}' 
-            sh 'buildah push  docker.io/practicascristina/${imageName} docker://docker.io/practicascristina/${imageName}'
-     
+            sh 'buildah tag ${imageName} practicascristina/springrepo'
+            sh 'buildah push  practicascristina/springrepo'
+     //--creds=${USER}:${PASS}
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
            
           }
