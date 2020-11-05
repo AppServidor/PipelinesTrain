@@ -55,7 +55,7 @@ spec:
            // sh 'buildah tag localhost/${imageName} docker.io/practicascristina/springclinic:latest'
         
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
-            sh 'buildah push buildah push docker.io/tuanpembual/${imageName}'
+            sh 'buildah push docker.io/tuanpembual/${imageName}'
           }
       }
     }
