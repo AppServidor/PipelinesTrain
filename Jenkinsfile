@@ -52,8 +52,8 @@ spec:
             sh 'buildah bud -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-            sh 'buildah tag ${imageName} ${imageName}:${imageTag}'
-            sh 'buildah push ${imageName}:${imageTag} practicascristina/springrepo'   
+            sh 'buildah tag ${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
+            sh 'buildah push ${imageName}:${imageTag} docker.io/${imageName}:${imageTag}'   
           }
       }
     }
