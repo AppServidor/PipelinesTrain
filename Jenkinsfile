@@ -52,8 +52,11 @@ spec:
             sh 'buildah bud -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-            sh 'buildah tag ${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
+            sh 'buildah tag localhost/${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
             sh 'buildah --debug push docker.io/practicascristina/${imageName}:${imageTag}'   
+         
+         podman push default-route-openshift-image-registry.apps.openshift.lab.containers/custom-apache
+         podman push  --tls-verify=false docker://default-route-openshift-image-registry.apps.openshift.lab.containers/openshift/custom-apache:latest
           }
       }
     }
