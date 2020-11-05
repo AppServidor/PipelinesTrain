@@ -49,13 +49,14 @@ spec:
 
           }
           container ('buildah'){
-            sh 'buildah bud --format=docker -t docker.io/practicascristina/${imageName} .'
+            sh 'buildah bud --format=docker -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-           // sh 'buildah tag localhost/${imageName} docker.io/practicascristina/springclinic:latest'
-        
-            //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
+            sh 'buildah -t ${imageName} docker.io/practicascristina/${imageName}' 
             sh 'buildah push docker.io/practicascristina/${imageName}'
+     
+            //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
+           
           }
       }
     }
