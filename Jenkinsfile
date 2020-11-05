@@ -52,10 +52,10 @@ spec:
             sh 'buildah bud -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-            sh 'buildah tag localhost/${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
+            sh 'buildah tag localhost/${imageName} docker.io/practicascristina/springclinic:latest'
             sh 'buildah images'
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
-            sh 'buildah --debug push docker.io/practicascristina/${imageName}:${imageTag} practicascristina/springrepo'
+            sh 'buildah --debug push docker.io/practicascristina/springclinic:latest'
             sh 'buildah containers'
           }
       }
