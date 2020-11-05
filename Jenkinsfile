@@ -49,7 +49,7 @@ spec:
           container ('buildah'){
             sh 'buildah bud -t springclinic .'
             sh 'buildah images'
-            sh 'buildah login docker.io'
+            sh 'buildah login -u ${USER} -p ${PASS} docker.io'
             sh 'buildah push springclinic practicascristina/springrepo'   
           }
       }
