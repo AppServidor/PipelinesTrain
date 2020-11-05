@@ -53,7 +53,7 @@ spec:
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
             sh 'buildah -t ${imageName} docker.io/practicascristina/${imageName}' 
-            sh 'buildah push docker.io/practicascristina/${imageName}'
+            sh 'buildah push docker.io/practicascristina/${imageName} docker://docker.io/practicascristina/${imageName}'
      
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
            
