@@ -55,7 +55,7 @@ spec:
             sh 'buildah tag localhost/${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
             sh 'buildah images'
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
-            sh 'buildah --debug push docker.io/practicascristina/${imageName}:${imageTag} docker://docker.io/practicascristina/${imageName}:${imageTag}'
+            sh 'buildah --debug push docker.io/practicascristina/${imageName}:${imageTag}'
             sh 'buildah containers'
           }
       }
