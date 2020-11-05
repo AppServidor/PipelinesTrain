@@ -53,7 +53,7 @@ spec:
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
             sh 'buildah tag ${imageName} practicascristina/springrepo'
-            sh 'buildah push  practicascristina/springrepo'
+            sh 'buildah push --creds=${USER}:${PASS} practicascristina/springrepo'
      //--creds=${USER}:${PASS}
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
            
