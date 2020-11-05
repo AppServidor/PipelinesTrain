@@ -2,6 +2,8 @@ pipeline {
    environment {
         USER = 'practicascristina'
         PASS = 'Crlsrz9489'
+        imageName = 'springclinic'
+        imageTag = 'latest'
     }
   agent {
     kubernetes {
@@ -47,10 +49,11 @@ spec:
 
           }
           container ('buildah'){
-            sh 'buildah bud -t springclinic .'
+            sh 'buildah bud -t ${imageName} .'
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
-            sh 'buildah push springclinic practicascristina/springrepo'   
+            sh 'buildah tag ${imageName} ${imageName}:${imageTag}'
+            sh 'buildah push ${imageName}:${imageTag} practicascristina/springrepo'   
           }
       }
     }
