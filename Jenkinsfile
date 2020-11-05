@@ -53,7 +53,7 @@ spec:
             sh 'buildah images'
             sh 'buildah login -u ${USER} -p ${PASS} docker.io'
             sh 'buildah tag ${imageName} docker.io/practicascristina/${imageName}:${imageTag}'
-            sh 'buildah --log-level=debug push ${imageName}:${imageTag} docker://docker.io/${imageName}:${imageTag}'   
+            sh 'buildah --debug push ${imageName}:${imageTag} docker://docker.io/${imageName}:${imageTag}'   
           }
       }
     }
