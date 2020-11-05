@@ -56,7 +56,7 @@ spec:
             sh 'buildah images'
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
             sh 'buildah --debug push docker.io/practicascristina/springclinic containers-storage:docker.io/docker.io/practicascristina/springclinic'
-        
+            sh 'buildah container'
           }
       }
     }
