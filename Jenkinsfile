@@ -67,7 +67,7 @@ spec:
             sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'
           //  sh 'helm install my-petclinic-app --set image.repository=practicascristina/springrepo --set image.tag=latest --set image.pullPolicy=Always bitnami/tomcat'
             sh 'helm repo update' 
-             sh 'helm repo list' 
+             sh 'helm list' 
           }
       }
     }
