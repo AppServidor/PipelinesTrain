@@ -65,6 +65,7 @@ spec:
           }
           container ('helm'){
             sh 'helm install --generate-name stable/mysql' 
+            sh 'kubectl cluster-info'
           }
       }
     }
