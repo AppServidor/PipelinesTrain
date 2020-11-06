@@ -70,15 +70,14 @@ spec:
           }
       }
     }
-   /*     stage('Example Test') {
-           
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-               
-            }
-      
-        }*/ 
+    stage('Kubernetes Setup'){
+        try{
+            sh("kubectl get pods")
+        } catch(e) {
+            notify("Something failed Kubernetes Setup")
+            throw e;
+        }
+    }
 }
 
 }
