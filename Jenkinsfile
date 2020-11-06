@@ -64,7 +64,7 @@ spec:
            
           }
           container ('helm'){
-            sh 'kubectl cluster-info'
+            
             sh 'helm install my-petclinic-app --set image.repository=practicascristina/springrepo --set image.tag=latest --set image.pullPolicy=Always practicascristina/petclinic'
           }
       }
