@@ -35,9 +35,14 @@ spec:
     command:
     - cat
     tty: true    
-   
+  - name: helm
+    image:  alpine/helm
+    command:
+    - cat
+    tty: true    
 """
-    }
+    } 
+
   }
       stages {
         stage('Example Build') {
@@ -57,6 +62,9 @@ spec:
      //--creds=${USER}:${PASS}
             //sh 'buildah  push docker.io/practicascristina/${imageName}:${imageTag}'   
            
+          }
+          container ('helm'){
+            sh 'helm repo update'
           }
       }
     }
