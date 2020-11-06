@@ -64,7 +64,7 @@ spec:
            
           }
           container ('helm'){
-            sh 'helm init'
+            sh 'helm install stable/mysql'
           }
       }
     }
