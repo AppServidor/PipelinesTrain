@@ -70,7 +70,7 @@ spec:
           }
       }
     }
-    stage('Kubernetes Setup'){
+        stage('Kubernetes Setup'){
         try{
             sh("kubectl get pods")
         } catch(e) {
@@ -78,6 +78,15 @@ spec:
             throw e;
         }
     }
+   /*     stage('Example Test') {
+           
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -version'
+               
+            }
+      
+        }*/ 
 }
 
 }
