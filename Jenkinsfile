@@ -67,10 +67,11 @@ spec:
             sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'
           //  sh 'helm install my-petclinic-app --set image.repository=practicascristina/springrepo --set image.tag=latest --set image.pullPolicy=Always bitnami/tomcat'
             sh 'helm repo update' 
+             sh 'helm repo list' 
           }
       }
     }
-            stage('Deploy') {
+   /* stage('Deploy') {
          steps {
  
             sh("kubectl get pods")
@@ -78,16 +79,8 @@ spec:
       
     }
             }
-    
-   /*     stage('Example Test') {
-           
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-               
-            }
-      
-        }*/ 
+    */        
+
 }
 
 }
