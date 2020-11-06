@@ -64,8 +64,8 @@ spec:
            
           }
           container ('helm'){
-            
-            sh 'helm install my-petclinic-app --set image.repository=practicascristina/springrepo --set image.tag=latest --set image.pullPolicy=Always practicascristina/petclinic'
+            sh 'helm repo list'
+           // sh 'helm install my-petclinic-app --set image.repository=practicascristina/springrepo --set image.tag=latest --set image.pullPolicy=Always practicascristina/petclinic'
           }
       }
     }
