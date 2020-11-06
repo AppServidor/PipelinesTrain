@@ -64,7 +64,7 @@ spec:
            
           }
           container ('helm'){
-            sh 'helm repo update'
+            sh 'helm init'
           }
       }
     }
