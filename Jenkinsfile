@@ -70,7 +70,18 @@ spec:
           }
       }
     }
-
+            stage('Deploy') {
+         steps {
+          try{
+            sh("kubectl get pods")
+        } catch(e) {
+            notify("Something failed Kubernetes Setup")
+            throw e;
+        }
+      }
+    }
+    
+    
    /*     stage('Example Test') {
            
             steps {
